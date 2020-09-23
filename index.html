@@ -10,8 +10,32 @@
     <script src="src/index.js"></script>
 </head>
 <body>
-	<h1>Random Walker Simulation - Click to add a new creature to the mix</h1>
+	<h1>Random Walker Simulation</h1>
 	<canvas width="500" height="500">
 	</canvas>
+	<div id="controlPanel">
+		<button id="pause">Pause Simulation</button>
+		<h2>Spawn Type</h2>
+		<select id="panelSelector">
+			<option value="food" selected>Food</option>
+			<option value="creature">Creature</option>
+		</select>
+		<div id="foodPanel" class="entitySpecificationPanel">
+			<h2>Size</h2>
+			<input type="number" value=10 id="foodSize" min="1" max="100">
+		</div>
+		<div id="creaturePanel" class="entitySpecificationPanel">
+			<h2>Size</h2>
+			<input type="number" id="creatureSize" value=10 min="5" max="50">
+			<h2>Color</h2>
+			<input type="color" id="creatureColor" value="#ff0000">
+			<h2>Type</h2>
+			<select>
+				<option value="triangle" selected>Circle</option>
+				<option value="circle">Square</option>
+				<option value="square">Triangle</option>
+			</select>
+		</div>
+	</div>
 </body>
 </html>
