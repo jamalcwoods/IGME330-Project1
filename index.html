@@ -7,33 +7,91 @@
 	<link rel="stylesheet" href="./styles/default-styles.css">
   <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
-    <script src="src/index.js"></script>
+	<script src="src/index.js"></script>
+	<script src="./jcwLIB.js"></script>
 </head>
 <body>
-	<h1>Random Walker Simulation</h1>
-	<canvas width="500" height="500">
-	</canvas>
+	<div id="displays">
+		<canvas width="720" height="500">
+		</canvas>
+		<div id="description">
+			<h1>Creature Simulation</h1>
+			<p>This site allows you observe a simulation of creatures in an environment where you can control various aspects of both the environment and creature behaviors</p>
+			<h2>Things to Note:</h2>
+			<p>Food is represented by green squares. It does not move</p>
+			<p>Hives are represented by square outlines. They will create creatures of their outlines color</p>
+			<p>Creatures are represented by squares and/or triangles and will eat food which increases their size</p>
+			<p>Creatures of different colors will attempt to consume each other if they can find a smaller creature and there is no more food</p>
+			<p>When creature has eaten enough food to raise it's size to 60 it will split into 4 creatures each with a size of 15</p>
+			<h2>How to Use:</h2>
+			<p>Select what you would like to spawn in the Spawn Type section</p>
+			<p>This will allow you to customize aspects of the entity before you spawn it</p>
+			<p>Simply click on canvas to create the entity at your mouse point</p>
+		</div>
+	</div>
+	
 	<div id="controlPanel">
-		<button id="pause">Pause Simulation</button>
-		<h2>Spawn Type</h2>
-		<select id="panelSelector">
-			<option value="food" selected>Food</option>
-			<option value="creature">Creature</option>
-		</select>
-		<div id="foodPanel" class="entitySpecificationPanel">
+		<div id="generalControls" class="specificationPanel">
+				<button id="pause">Pause Simulation</button>
+				<button id="clear">Clear Entities</button>
+		</div>
+		<div id="creatureControls" class="specificationPanel">
+			<input type="checkbox" checked id="foodOnDeath" value="foodOnDeath">
+			<label for="foodOnDeath">Become Food When Starved</label><br>
+			<input type="checkbox" checked id="sizeControlledSpeed" value="sizeControlledSpeed">
+			<label for="sizeControlledSpeed">Size Dependant Speed</label><br>
+			<input type="checkbox" checked id="creatureHunger" value="creatureHunger">
+			<label for="creatureHunger">Hunger Over Time</label><br>
+			<h2>Hunger Delay</h2>
+			<input type="number" value=0.5 id="hungerDelay" min="0.1" max="10">
+			<h2>Starvation Threshold</h2>
+			<input type="number" value=5 id="starvationThreshold" min="1" max="10">
+		</div> 
+		<div id="foodSpawnPanel" class="specificationPanel">
+			<h2>Food Spawner</h2>
+			<input type="checkbox" checked id="randFoodSpawn" value="randFoodToggle">
+			<label for="randFoodToggle">Randomly Spawn Food</label><br>
+			<h2>Spawn Delay</h2>
+			<input type="number" value=1 id="foodSpawnRate" min="0.1" max="10">
+		</div>
+		<div id="spawnTypePanel" class="specificationPanel">
+			<h2>Spawn Type</h2>
+			<select id="panelSelector">
+				<option value="food">Food</option>
+				<option value="creature">Creature</option>
+				<option value="hive" selected>Hive</option>
+			</select>
+		</div>
+		<div id="foodPanel" class="specificationPanel">
 			<h2>Size</h2>
 			<input type="number" value=10 id="foodSize" min="1" max="100">
 		</div>
-		<div id="creaturePanel" class="entitySpecificationPanel">
+		<div id="hivePanel" class="specificationPanel">
+			<h2>SpawnRate</h2>
+			<input type="number" value=10 id="hiveSpawnRate" min="1" max="10">
+			<h2>Color</h2>
+			<input type="color" id="hiveColor" value="#ff0000">
+			<h2>Type</h2>
+			<select id="spawnCreatureType">
+			<option value="triangle" >Triangle</option>
+			<option value="square" selected>Square</option>
+			</select>
+		</div>
+		<div id="creaturePanel" class="specificationPanel">
 			<h2>Size</h2>
+			<input type="checkbox" id="randSizeToggle" value="randSizeToggle">
+			<label for="randSizeToggle">Randomize Size</label><br>
 			<input type="number" id="creatureSize" value=10 min="5" max="50">
 			<h2>Color</h2>
+			<input type="checkbox" id="randColorToggle" value="randColorToggle">
+  			<label for="randColorToggle">Randomize Color</label><br>
 			<input type="color" id="creatureColor" value="#ff0000">
 			<h2>Type</h2>
-			<select>
-				<option value="triangle" selected>Circle</option>
-				<option value="circle">Square</option>
-				<option value="square">Triangle</option>
+			<input type="checkbox" id="randTypeToggle" value="randTypeToggle">
+			<label for="randTypeToggle">Randomize Type</label><br>
+			<select id="creatureType">
+			<option value="triangle" >Triangle</option>
+			<option value="square" selected>Square</option>
 			</select>
 		</div>
 	</div>

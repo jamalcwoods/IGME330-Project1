@@ -1,1 +1,19 @@
+#displays{
+    display: flex;
+}
 
+#controlPanel{
+    display: flex;
+    justify-content: space-between;
+}
+
+body{
+    background-color: gray;
+}
+
+.specificationPanel{
+    border: solid;
+    border-width: 2px;
+    background-color: ghostwhite;
+    padding: 10px;
+}
