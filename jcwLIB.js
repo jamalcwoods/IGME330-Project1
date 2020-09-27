@@ -2,13 +2,8 @@
 
 
 (function(){
-    // #0 - In this course we will always use ECMAScript 5's "strict" mode
-    // See what 'use strict' does here:
-    // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions_and_function_scope/Strict_mode
+   
     'use strict';
-
-    // #1 call the init function after the pages loads
-    // this is called an "event handler"
     window.onload = init;
     let ctx;
     let lineY = 240;
@@ -291,6 +286,13 @@
                 break;
 
             case "circle":
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(walker.x, walker.y, walker.size/2, 0, 2 * Math.PI);
+                ctx.closePath();
+                ctx.fillStyle = walker.color
+                ctx.fill()
+                ctx.restore(); 
                 break;
         }
         
